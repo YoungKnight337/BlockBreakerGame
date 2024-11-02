@@ -1,7 +1,5 @@
 #include "block.h"
-
-#define BRICK_ROW 8
-#define BRICK_COL 12
+#include "Ball.h" 
 
 Block::Block(Vector2 position, int width, int height, int value, bool isHit, Color color)
 {
@@ -21,15 +19,15 @@ void Block::Draw()
     for (int i = 0; i < BRICK_ROW; i++)
     {
         for (int j = 0; j < BRICK_COL; j++)
-            Block block;
-            DrawRectangle(position, width, height, color);
+            DrawRectangle(position.x,position.y, width, height, color);
+            GetRect();
     }
 }
 
 void Block::Update()
 {
     //Check Collision with Ball
-    if (CheckCollisionCircleRec(position, radius, GetRect())
+    if (CheckCollisionCircleRec(Ball.position, Ball.radius, GetRect()))
     {
         isHit = true;
         EndDrawing();
@@ -38,5 +36,9 @@ void Block::Update()
 
 Rectangle Block::GetRect()
 {
-    return Rectangle{position.x,position.y,width,height,color };
+    Rectangle rect;
+    rect.x = position.x;
+    rect.y = position.y;
+    rect.width= height;
+    rect.height = height;
 }
