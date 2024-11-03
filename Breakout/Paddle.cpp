@@ -1,11 +1,10 @@
 #include "paddle.h"
 #include "breakout.cpp"
 
-Paddle::Paddle(Vector2 position, float speed, int width, int height, int score, int lives)
+Paddle::Paddle(Vector2 position, int width, int height, int score, int lives)
 {
-    position.x = SCREEN_HEIGHT / 2;
-    position.y = SCREEN_WIDTH / 2;
-    speed = 2.0f;
+    position.x = GetScreenHeight() / 2;
+    position.y = GetScreenWidth() / 2;
     width = 75;
     height = 20;
     score = 0;
@@ -23,9 +22,9 @@ void Paddle::Draw()
 void Paddle::Update()
 {
     if (IsKeyDown(KEY_LEFT))
-        position.x -= speed.x;
+        position.x -= 5;
     if (IsKeyDown(KEY_RIGHT))
-        position.x += speed.x;
+        position.x += 5;
     if (IsKeyDown(KEY_SPACE))
         Launch();
 }
@@ -42,6 +41,6 @@ Rectangle Paddle::GetRect()
     Rectangle rect;
     rect.x = position.x;
     rect.y = position.y;
-    rect.width =width;
+    rect.width = width;
     rect.height = height;
 }

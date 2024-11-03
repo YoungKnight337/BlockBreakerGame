@@ -12,7 +12,7 @@ class Ball
         ~Ball();
         void Draw();
         void Update();
-
+        //Circle GetCirlce()
 
 
 };

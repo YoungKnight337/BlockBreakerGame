@@ -10,11 +10,11 @@ using namespace std;
 int main() 
 {
 
-    const int SCREEN_WIDTH = 800;
-    const int SCREEN_HEIGHT = 450;
+    //const int SCREEN_WIDTH = 800;
+    //const int SCREEN_HEIGHT = 450;
 
 
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout");
+    InitWindow(800, 450, "Breakout");
     SetTargetFPS(60);
 
     while (WindowShouldClose() == false) 
@@ -23,13 +23,13 @@ int main()
         Ball::Update();
         Block::Update();
         
-        
         BeginDrawing();
         ClearBackground(BLACK);
 
         Ball::Draw();
-        Paddle::Draw()
+        Paddle::Draw();
         Block::Draw();
+        
         EndDrawing();
     }
 

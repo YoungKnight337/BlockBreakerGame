@@ -11,11 +11,11 @@ Ball::Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius)
     int radius = 15;
 }
 
-Ball::~Ball(){}
+Ball::~Ball() {}
 
 void Ball::Draw()
-{ 
-    DrawCircle(position.x,position.y, radius, WHITE);
+{
+    DrawCircle(position.x, position.y, radius, WHITE);
 }
 
 void Ball::Update()
@@ -23,20 +23,26 @@ void Ball::Update()
     position.x += ball_speed_x;
     position.y += ball_speed_y;
 
-    if (position.x + radius >= SCREEN_WIDTH || position.x - radius <= 0)
+    if (position.x + radius >= GetScreenWidth() || position.x - radius <= 0)
     {
         ball_speed_x *= -1;
     }
 
-    if (position.y + radius >= SCREEN_HEIGHT || position.y - radius <= 0)
+    if (position.y + radius >= GetScreenHeight() || position.y - radius <= 0)
     {
         ball_speed_y *= -1;
     }
 
-    if (CheckCollisionCircleRec(position, radius, Paddle.GetRect())||CheckCollisionCircleRec(position, radius, Block.GetRect()))
+    if (CheckCollisionCircleRec(position, radius, Rectangle Paddle))
+    {
+        ball_speed_x *= +1;
+    }
+
+    else if (CheckCollisionCircleRec(position, radius, Block.GetRect()))
     {
         ball_speed_x *= +1;
     }
     
 }
 
+ 
