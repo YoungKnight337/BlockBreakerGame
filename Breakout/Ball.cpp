@@ -7,7 +7,7 @@ Ball::Ball()
 }
 
 Ball::Ball(Vector2 position = {100.f, 100.f}, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 15)
-    : position(position), ball_speed_x(ball_speed_x), ball_speed_y(ball_speed_y), radius(radius)
+    : position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}
 {
 }
 

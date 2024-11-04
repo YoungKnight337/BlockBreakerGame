@@ -31,7 +31,7 @@ void Block::Draw()
     }
 }
 
-void Block::Update(Ball &ball)
+void Block::Update(const Ball &ball)
 {
     // Check Collision with Ball
     if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
