@@ -7,28 +7,33 @@
 
 using namespace std;
 
+// [xenobrain] Screen dimensions as a static constexpr
+// means the values is set at compile time and has internal linkage (won't leak into other files)
+static constexpr int SCREEN_WIDTH = 800;
+static constexpr int SCREEN_HEIGHT = 450;
+
 int main() 
 {
-
-    //const int SCREEN_WIDTH = 800;
-    //const int SCREEN_HEIGHT = 450;
-
-
-    InitWindow(800, 450, "Breakout");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout");
     SetTargetFPS(60);
 
+    // [xenobrain] Declare an instance of the classes
+    Paddle paddle;
+    Ball ball;
+    Block block;
+    
     while (WindowShouldClose() == false) 
     {
-        Paddle::Update();
-        Ball::Update();
-        Block::Update();
+        paddle.Update();
+        ball.Update();
+        block.Update(ball);
         
         BeginDrawing();
         ClearBackground(BLACK);
 
-        Ball::Draw();
-        Paddle::Draw();
-        Block::Draw();
+        ball.Draw();
+        paddle.Draw();
+        block.Draw();
         
         EndDrawing();
     }

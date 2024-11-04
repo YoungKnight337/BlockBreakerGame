@@ -1,14 +1,19 @@
 #include "paddle.h"
-#include "breakout.cpp"
+// [xenobrain] removed breakout.cpp
 
-Paddle::Paddle(Vector2 position, int width, int height, int score, int lives)
+// [xenobrain] this constructor was implicit before, but it needs to be explicit especially since it has logic
+Paddle::Paddle() : width {75}, height {20}, score {0}, lives {3}
 {
-    position.x = GetScreenHeight() / 2;
-    position.y = GetScreenWidth() / 2;
-    width = 75;
-    height = 20;
-    score = 0;
-    lives = 3;
+    // Cast to float to avoid integer division
+    position.x = static_cast<float>(GetScreenHeight()) / 2.f;
+    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    color = GRAY; 
+}
+
+// [xenobrain] added setters and default values where possible
+Paddle::Paddle(Vector2 position, int width = 75, int height = 20, int score = 0, int lives = 3) :
+    position {position}, width {width}, height {height}, score {score}, lives {lives}
+{
     color = GRAY;
 }
 
@@ -16,7 +21,7 @@ Paddle::~Paddle() {}
 
 void Paddle::Draw()
 {
-    DrawRectangle(position.x, position.y, width, height, color);
+    DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
 }
 
 void Paddle::Update()
