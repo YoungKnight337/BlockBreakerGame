@@ -27,7 +27,7 @@ void Block::Draw()
 void Block::Update()
 {
     //Check Collision with Ball
-    if (CheckCollisionCircleRec(Ball.position, Ball.radius, GetRect()))
+    if (CheckCollisionCircleRec(Ball.position, ball.radius, GetRect()))
     {
         isHit = true;
         EndDrawing();
@@ -36,9 +36,10 @@ void Block::Update()
 
 Rectangle Block::GetRect()
 {
-    Rectangle rect;
-    rect.x = position.x;
-    rect.y = position.y;
-    rect.width= height;
-    rect.height = height;
+    return{ position.x,position.y,float(width), float(height) };
+   // Rectangle rect;
+    //rect.x = position.x;
+    //rect.y = position.y;
+    //rect.width= height;
+    //rect.height = height;
 }

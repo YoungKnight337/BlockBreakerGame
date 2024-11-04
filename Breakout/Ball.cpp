@@ -1,14 +1,14 @@
 #include "ball.h"
-#include "block.h"
-#include "paddle.h"
+//#include "block.h"
+//#include "paddle.h"
 
 Ball::Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius)
 {
     position.x = 100;
     position.y = 100;
-    int ball_speed_x = 5;
-    int ball_speed_y = 5;
-    int radius = 15;
+    ball_speed_x = 5;
+    ball_speed_y = 5;
+    radius = 15;
 }
 
 Ball::~Ball() {}
@@ -19,6 +19,11 @@ void Ball::Draw()
 }
 
 void Ball::Update()
+{
+    Bounce();
+}
+
+void Ball:: Bounce()
 {
     position.x += ball_speed_x;
     position.y += ball_speed_y;
@@ -33,16 +38,14 @@ void Ball::Update()
         ball_speed_y *= -1;
     }
 
-    if (CheckCollisionCircleRec(position, radius, Rectangle Paddle))
+    if (CheckCollisionCircleRec(position, radius, GetRect()))
     {
         ball_speed_x *= +1;
     }
 
-    else if (CheckCollisionCircleRec(position, radius, Block.GetRect()))
+    if (CheckCollisionCircleRec(position, radius, GetRect()))
     {
         ball_speed_x *= +1;
     }
-    
 }
-
  

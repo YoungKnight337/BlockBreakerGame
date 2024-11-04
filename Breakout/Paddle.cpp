@@ -38,9 +38,9 @@ void Paddle::Launch()
 
 Rectangle Paddle::GetRect()
 {
-    Rectangle rect;
-    rect.x = position.x;
-    rect.y = position.y;
-    rect.width = width;
-    rect.height = height;
+    return { position.x,position.y,float(width), float(height) };
+    //rect.x = position.x;
+    //rect.y = position.y;
+    //rect.width = width;
+    //rect.height = height;
 }
