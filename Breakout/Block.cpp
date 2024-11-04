@@ -1,33 +1,40 @@
 #include "block.h"
 #include "Ball.h" 
 
-Block::Block(Vector2 position, int width, int height, int value, bool isHit, Color color)
+Block::Block()
+ : position {0.f, 0.f}, isHit {false}, width {50}, height {50}, value {1}, color {YELLOW}
 {
-    position.x;
-    position.y;
-    isHit = false;
-    width = 50;
-    height = 20;
-    value = 1;
-    color = YELLOW;
 }
 
-Block::~Block() {}
+Block::Block(Vector2 position, int width = 50, int height = 50, int value = 1, bool isHit = false, Color color = YELLOW)
+    : position {position}, isHit {isHit}, width {width}, height {height}, value {value}, color {color}
+{
+}
+
+Block::~Block()
+{
+    
+}
 
 void Block::Draw()
 {
     for (int i = 0; i < BRICK_ROW; i++)
     {
         for (int j = 0; j < BRICK_COL; j++)
-            DrawRectangle(position.x,position.y, width, height, color);
-            GetRect();
+        {
+            DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
+        }
+
+        // [xenobrain] not sure what you're using this for yet but there was misleading indentation by having it under
+        // DrawRectagle.  Moved it here and added brackets to make it clear what's going on 
+        GetRect();
     }
 }
 
-void Block::Update()
+void Block::Update(Ball &ball)
 {
-    //Check Collision with Ball
-    if (CheckCollisionCircleRec(Ball.position, ball.radius, GetRect()))
+    // Check Collision with Ball
+    if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
     {
         isHit = true;
         EndDrawing();
