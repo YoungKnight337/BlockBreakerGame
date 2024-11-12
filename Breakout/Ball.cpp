@@ -28,15 +28,14 @@ void Ball::Draw()
 
 void Ball::Update()
 {
-
-    if (!isLaunched)
+    /*if (isLaunched = false)
     {
         if((IsKeyDown(KEY_SPACE)))
-            isLaunched = true;
             Launch();
             Bounce();
             
     }
+    */
 }
 
 void Ball::Bounce()
@@ -69,17 +68,19 @@ void Ball::Bounce()
 }
 
 void Ball::Launch()
-{
+{ 
+    isLaunched = true;
+
     if (isLaunched = true)
     {
         ball_speed_x = 0;
-        ball_speed_y = -5;
-
+        ball_speed_y =-5;
     }
-    else
+    /*else
     {
         position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
         position.y = static_cast<float>(GetScreenWidth()) / 2.f;
     }
+    */
 }
  
