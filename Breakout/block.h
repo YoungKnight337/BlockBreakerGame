@@ -18,7 +18,7 @@ private:
     const int BRICK_COL = 12;
 public:
     Block();
-    Block(Vector2 position, int width, int height, int value, bool isHit, Color colo);
+    Block(Vector2 position, int width, int height, int value, bool isHit, Color color);
     ~Block();
     void Draw();
     // [xenobrain] Block needs a reference to Ball.  Const reference used so it can't be modified

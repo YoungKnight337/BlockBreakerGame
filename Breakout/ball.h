@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+class Paddle;
+
 class Ball
 {
     private:
@@ -9,14 +11,16 @@ class Ball
         int ball_speed_x;
         int ball_speed_y;
         int radius;
+        bool isLaunched;
+        Color color;
     public:
         Ball();
-        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius);
+        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius,Color color);
         ~Ball();
         void Bounce();
         void Draw();
         void Update();
-
+        void Launch();
         // [xenobrain] Const accessors prevent modifying values
         Vector2 GetPosition() const { return position; }
         int GetRadius() const { return radius; }

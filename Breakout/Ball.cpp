@@ -2,25 +2,41 @@
 //#include "block.h"
 //#include "paddle.h"
 
-Ball::Ball()
+
+//Default Constructor
+Ball::Ball() 
+    : position{position.x,position.y}, ball_speed_x{ 5 }, ball_speed_y{ 5 }, radius{ 7 }, color{ WHITE }
 {
+    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
+    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    isLaunched = false;
 }
 
-Ball::Ball(Vector2 position = {100.f, 100.f}, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 15)
-    : position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}
+//Paramter Constructor
+Ball::Ball(Vector2 position, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 7, Color color = WHITE)
+    :position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}, color {color}
 {
+    isLaunched = false;
 }
 
 Ball::~Ball() {}
 
 void Ball::Draw()
 {
-    DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), WHITE);
+    DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
 void Ball::Update()
 {
-    Bounce();
+
+    if (!isLaunched)
+    {
+        if((IsKeyDown(KEY_SPACE)))
+            isLaunched = true;
+            Launch();
+            Bounce();
+            
+    }
 }
 
 void Ball::Bounce()
@@ -50,5 +66,20 @@ void Ball::Bounce()
         ball_speed_x *= +1;
     }
     */
+}
+
+void Ball::Launch()
+{
+    if (isLaunched = true)
+    {
+        ball_speed_x = 0;
+        ball_speed_y = -5;
+
+    }
+    else
+    {
+        position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
+        position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    }
 }
  

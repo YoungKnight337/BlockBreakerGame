@@ -1,20 +1,19 @@
 #include "block.h"
 #include "Ball.h" 
 
+//Default Constructor
 Block::Block()
  : position {0.f, 0.f}, isHit {false}, width {50}, height {50}, value {1}, color {YELLOW}
 {
 }
 
+//Parameter Constructor
 Block::Block(Vector2 position, int width = 50, int height = 50, int value = 1, bool isHit = false, Color color = YELLOW)
     : position {position}, isHit {isHit}, width {width}, height {height}, value {value}, color {color}
 {
 }
 
-Block::~Block()
-{
-    
-}
+Block::~Block(){}
 
 void Block::Draw()
 {
@@ -43,10 +42,6 @@ void Block::Update(const Ball &ball)
 
 Rectangle Block::GetRect()
 {
-    return{ position.x,position.y,float(width), float(height) };
-   // Rectangle rect;
-    //rect.x = position.x;
-    //rect.y = position.y;
-    //rect.width= height;
-    //rect.height = height;
+    return{position.x,position.y,float(width), float(height) };
+
 }

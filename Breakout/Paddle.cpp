@@ -2,19 +2,21 @@
 // [xenobrain] removed breakout.cpp
 
 // [xenobrain] this constructor was implicit before, but it needs to be explicit especially since it has logic
-Paddle::Paddle() : width {75}, height {20}, score {0}, lives {3}
+
+//Default Constructor
+Paddle::Paddle() : position{ position.x,position.y },width { 75 }, height{ 20 }, score{ 0 }, lives{ 3 }, color{ GRAY }
 {
     // Cast to float to avoid integer division
-    position.x = static_cast<float>(GetScreenHeight()) / 2.f;
+    position.x = static_cast<float>(GetScreenHeight())* 7/8.f;
     position.y = static_cast<float>(GetScreenWidth()) / 2.f;
-    color = GRAY; 
 }
 
 // [xenobrain] added setters and default values where possible
-Paddle::Paddle(Vector2 position, int width = 75, int height = 20, int score = 0, int lives = 3) :
-    position {position}, width {width}, height {height}, score {score}, lives {lives}
+
+//Parameter Constructor
+Paddle::Paddle(Vector2 position, int width = 75, int height = 20, int score = 0, int lives = 3, Color color =GRAY) 
+    : position {position}, width {width}, height {height}, score {score}, lives {lives}, color {color}
 {
-    color = GRAY;
 }
 
 Paddle::~Paddle() {}
@@ -30,22 +32,23 @@ void Paddle::Update()
         position.x -= 5;
     if (IsKeyDown(KEY_RIGHT))
         position.x += 5;
-    if (IsKeyDown(KEY_SPACE))
-        Launch();
+    LimitMovement();
 }
 
 
-void Paddle::Launch()
+void Paddle::LimitMovement()
 {
-
+    if (position.x <= 0) 
+    {
+        position.x = 0;
+    }
+    if (position.x + width >= GetScreenWidth()) 
+    {
+        position.x = GetScreenWidth() - width;
+    }
 }
-
 
 Rectangle Paddle::GetRect()
 {
-    return { position.x,position.y,float(width), float(height) };
-    //rect.x = position.x;
-    //rect.y = position.y;
-    //rect.width = width;
-    //rect.height = height;
+    return {position.x,position.y,float(width), float(height)};
 }
