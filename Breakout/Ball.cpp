@@ -28,17 +28,22 @@ void Ball::Draw()
 
 void Ball::Update()
 {
-    /*if (isLaunched = false)
+
+    if (!isLaunched)
     {
-        if((IsKeyDown(KEY_SPACE)))
+        if ((IsKeyDown(KEY_SPACE)))
+        {
+            isLaunched = true;
             Launch();
-            Bounce();
-            
+        }
     }
-    */
+    else
+    {
+        Bounce();
+    }
 }
 
-void Ball::Bounce()
+void Ball::Bounce(const Paddle& paddle)
 {
     position.x += ball_speed_x;
     position.y += ball_speed_y;
@@ -54,12 +59,12 @@ void Ball::Bounce()
     }
 
     // [xenobrain] Commented this section out for now because it's incomplete.  Needs to check collision with each block
-    /*
-    if (CheckCollisionCircleRec(position, radius, GetRect()))
+    
+    if (CheckCollisionCircleRec(position, radius, paddle.GetRect()))
     {
         ball_speed_x *= +1;
     }
-
+    /*
     if (CheckCollisionCircleRec(position, radius, GetRect()))
     {
         ball_speed_x *= +1;
@@ -68,19 +73,13 @@ void Ball::Bounce()
 }
 
 void Ball::Launch()
-{ 
-    isLaunched = true;
-
+{
     if (isLaunched = true)
     {
         ball_speed_x = 0;
-        ball_speed_y =-5;
+        ball_speed_y = -5;
+
     }
-    /*else
-    {
-        position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
-        position.y = static_cast<float>(GetScreenWidth()) / 2.f;
-    }
-    */
+
 }
  

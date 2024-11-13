@@ -17,7 +17,7 @@ class Ball
         Ball();
         Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius,Color color);
         ~Ball();
-        void Bounce();
+        void Bounce(const Paddle &paddle);
         void Draw();
         void Update();
         void Launch();
