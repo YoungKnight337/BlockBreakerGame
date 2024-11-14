@@ -25,7 +25,7 @@ int main()
     while (WindowShouldClose() == false) 
     {
         paddle.Update();
-        ball.Update();
+        ball.Update(paddle);
         block.Update(ball);
         
         BeginDrawing();

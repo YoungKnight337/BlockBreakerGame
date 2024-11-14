@@ -50,5 +50,5 @@ void Paddle::LimitMovement()
 
 Rectangle Paddle::GetRect()
 {
-    return {position.x,position.y,float(width), float(height)};
+    return {position.x,position.y, float(width), float(height)};
 }

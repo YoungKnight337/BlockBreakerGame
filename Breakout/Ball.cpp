@@ -1,6 +1,6 @@
 #include "ball.h"
+#include "paddle.h"
 //#include "block.h"
-//#include "paddle.h"
 
 
 //Default Constructor
@@ -26,7 +26,7 @@ void Ball::Draw()
     DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
-void Ball::Update()
+void Ball::Update(Paddle &player)
 {
 
     if (!isLaunched)
@@ -39,11 +39,11 @@ void Ball::Update()
     }
     else
     {
-        Bounce();
+        Bounce(player);
     }
 }
 
-void Ball::Bounce(const Paddle& paddle)
+void Ball::Bounce(Paddle &paddle)
 {
     position.x += ball_speed_x;
     position.y += ball_speed_y;
@@ -60,17 +60,24 @@ void Ball::Bounce(const Paddle& paddle)
 
     // [xenobrain] Commented this section out for now because it's incomplete.  Needs to check collision with each block
     
-    if (CheckCollisionCircleRec(position, radius, paddle.GetRect()))
+    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()),paddle.GetRect()))
     {
-        ball_speed_x *= +1;
+        if (ball_speed_y > 0)
+        {
+            ball_speed_y *= -1;
+            //ball_speed_x = (position.x - paddle.GetPosition());
+
+        }
     }
     /*
-    if (CheckCollisionCircleRec(position, radius, GetRect()))
+    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), static_cast<float>block.GetRect()))
     {
-        ball_speed_x *= +1;
+        ball_speed_y *= -1;
     }
     */
 }
+
+//void Ball::RectangleCollision(){}
 
 void Ball::Launch()
 {
@@ -80,6 +87,5 @@ void Ball::Launch()
         ball_speed_y = -5;
 
     }
-
 }
  
