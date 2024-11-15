@@ -23,10 +23,8 @@ void Block::Draw()
         {
             DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
         }
-
         // [xenobrain] not sure what you're using this for yet but there was misleading indentation by having it under
         // DrawRectagle.  Moved it here and added brackets to make it clear what's going on 
-        GetRect();
     }
 }
 
@@ -35,13 +33,19 @@ void Block::Update(const Ball &ball)
     // Check Collision with Ball
     if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
     {
-        isHit = true;
-        EndDrawing();
+        isHit = true; 
     }
 }
+void Block::Destroy()
+{
+    if (isHit = true)
+    {
 
+    }
+}
 Rectangle Block::GetRect()
 {
     return{position.x,position.y,float(width), float(height) };
 
 }
+

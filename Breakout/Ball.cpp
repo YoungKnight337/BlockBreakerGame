@@ -1,5 +1,6 @@
 #include "ball.h"
 #include "paddle.h"
+#include "block.h"
 //#include "block.h"
 
 
@@ -26,7 +27,7 @@ void Ball::Draw()
     DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
-void Ball::Update(Paddle &player)
+void Ball::Update(Paddle &player, Block &brick)
 {
 
     if (!isLaunched)
@@ -39,11 +40,11 @@ void Ball::Update(Paddle &player)
     }
     else
     {
-        Bounce(player);
+        Bounce(player,brick);
     }
 }
 
-void Ball::Bounce(Paddle &paddle)
+void Ball::Bounce(Paddle &paddle, Block &block)
 {
     position.x += ball_speed_x;
     position.y += ball_speed_y;
@@ -65,16 +66,18 @@ void Ball::Bounce(Paddle &paddle)
         if (ball_speed_y > 0)
         {
             ball_speed_y *= -1;
-            //ball_speed_x = (position.x - paddle.GetPosition());
+            ball_speed_x = -1; //(position.x - (paddle.GetRect()/2);
+        
 
         }
     }
-    /*
-    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), static_cast<float>block.GetRect()))
+    
+    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {
         ball_speed_y *= -1;
+        ball_speed_x = -1;
     }
-    */
+    
 }
 
 //void Ball::RectangleCollision(){}

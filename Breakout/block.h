@@ -21,6 +21,7 @@ public:
     Block(Vector2 position, int width, int height, int value, bool isHit, Color color);
     ~Block();
     void Draw();
+    void Destroy();
     // [xenobrain] Block needs a reference to Ball.  Const reference used so it can't be modified
     void Update(const Ball &ball);
     Rectangle GetRect();
