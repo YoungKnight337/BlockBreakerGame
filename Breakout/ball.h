@@ -19,7 +19,7 @@ class Ball
         ~Ball();
         void Bounce(Paddle &paddle, Block &block);
         void Draw();
-        void Update(Paddle& player, Block& brick);
+        void Update(Paddle& player, Block &block);
         void Launch();
         // [xenobrain] Const accessors prevent modifying values
         Vector2 GetPosition() const { return position; }

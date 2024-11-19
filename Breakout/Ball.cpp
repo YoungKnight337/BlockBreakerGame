@@ -27,7 +27,7 @@ void Ball::Draw()
     DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
-void Ball::Update(Paddle &player, Block &brick)
+void Ball::Update(Paddle &player,  Block &block)
 {
 
     if (!isLaunched)
@@ -40,7 +40,7 @@ void Ball::Update(Paddle &player, Block &brick)
     }
     else
     {
-        Bounce(player,brick);
+        Bounce(player,block);
     }
 }
 
