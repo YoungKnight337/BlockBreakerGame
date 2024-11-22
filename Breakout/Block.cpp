@@ -18,7 +18,7 @@ Block::Block(Vector2 position, int width = 50, int height = 20, int value = 1, b
     {
         for (int j = 0; j < BRICK_COL; j++)
         {
-            blocks[i][j] = Vector2{ static_cast<float>(j) * width + width / 2, static_cast<float>(i) * height + 50 };
+            blocks[i][j] = Vector2{ static_cast<float>(int j) * width + width / 2, static_cast<float>(int i) * height + 50 };
             blocks[i][j].isHit = false;
         }
     }
@@ -31,9 +31,9 @@ void Block::Draw()
 {
     //DrawRectangle(static_cast<float>(position.x), static_cast<float>(position.y), width, height, color);
 
-    if (active = true)
+    if (active)
     {
-        DrawRectangle(static_cast<float>(position.x), static_cast<float>(position.y), width, height, color);
+        DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
     }
     
 
@@ -54,18 +54,26 @@ void Block::Draw()
     */
 }
 
-void Block::Update(const Ball &ball)
+void Block::Update(const Ball& ball)
 {
-    // Check Collision with Ball
     if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
     {
-        active = false; 
+        active = false;
     }
 }
-
 Rectangle Block::GetRect()
 {
-    return{position.x,position.y,float(width), float(height) };
-
+        return{position.x,position.y, float(width), float(height) };
 }
+// Check Collision with Ball
+/*void Block::Deactivate(const Ball & ball)
+{
+    if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
+    {
+        active = false;
+    }
+}
+*/
+
+
 

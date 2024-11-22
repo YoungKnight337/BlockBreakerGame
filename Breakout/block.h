@@ -21,6 +21,7 @@ public:
     ~Block();
     void Draw();
     // [xenobrain] Block needs a reference to Ball.  Const reference used so it can't be modified
-    void Update(const Ball &ball);
+    void Update(const Ball& ball);
+   // void Deactivate(const Ball& ball);
     Rectangle GetRect();
 };
