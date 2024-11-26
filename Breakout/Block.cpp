@@ -63,7 +63,7 @@ void Block::Update(const Ball& ball)
 }
 Rectangle Block::GetRect()
 {
-        return{position.x,position.y, float(width), float(height) };
+        return{position.x,position.y, static_cast<float>(width), static_cast<float>(height) };
 }
 // Check Collision with Ball
 /*void Block::Deactivate(const Ball & ball)
