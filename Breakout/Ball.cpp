@@ -75,7 +75,7 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {
         ball_speed_y *= -1;
-        ball_speed_x = -1;
+        //ball_speed_x = -1;
     }
     
 }
