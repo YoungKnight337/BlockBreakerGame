@@ -12,11 +12,12 @@ int main()
 {
     static constexpr int SCREEN_WIDTH = 800;
     static constexpr int SCREEN_HEIGHT = 450;
+    static const int FRAME_RATE = 500;
     static const int BRICK_ROW = 8;
     static const int BRICK_COL = 12;
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout");
-    SetTargetFPS(60);
+    SetTargetFPS(FRAME_RATE);
 
     // [xenobrain] Declare an instance of the classes
     Paddle paddle;
