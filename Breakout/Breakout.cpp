@@ -3,7 +3,6 @@
 #include "ball.h"
 #include "block.h"
 #include "paddle.h"
-using namespace std;
 
 // [xenobrain] Screen dimensions as a static constexpr
 // means the values is set at compile time and has internal linkage (won't leak into other files)
@@ -29,9 +28,7 @@ int main()
     { 
         paddle.Update();
         ball.Update(paddle, block);
-        //block.Update(ball);
-        
-        
+
         for (int i = 0; i < BRICK_ROW; i++)
         {
             for (int j = 0; j < BRICK_COL; j++)

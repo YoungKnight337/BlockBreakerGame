@@ -43,7 +43,6 @@ void Ball::Update(Paddle &player,  Block &block)
         Bounce(player,block);
     }
 }
-
 void Ball::Bounce(Paddle &paddle, Block &block)
 {
     position.x += ball_speed_x;
@@ -67,8 +66,6 @@ void Ball::Bounce(Paddle &paddle, Block &block)
         {
             ball_speed_y *= -1;
             ball_speed_x = -1; //(position.x - (paddle.GetRect()/2);
-        
-
         }
     }
     
@@ -80,15 +77,18 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     
 }
 
-//void Ball::RectangleCollision(){}
-
 void Ball::Launch()
 {
     if (isLaunched = true)
     {
         ball_speed_x = 0;
         ball_speed_y = -5;
-
     }
 }
  
+void Ball::ResetBall()
+{
+    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
+    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    isLaunched = false;
+}

@@ -21,6 +21,7 @@ class Ball
         void Draw();
         void Update(Paddle& player, Block &block);
         void Launch();
+        void ResetBall();
         // [xenobrain] Const accessors prevent modifying values
         Vector2 GetPosition() const { return position; }
         int GetRadius() const { return radius; }
