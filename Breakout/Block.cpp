@@ -4,7 +4,7 @@
 //Default Constructor
 
 Block::Block()
- :position{}, active {true}, width {80}, height {20}, value {1}, color {YELLOW}
+ :position{position.x,position.y}, active {true}, width {80}, height {20}, value {1}, color {YELLOW}
 {
 
 }

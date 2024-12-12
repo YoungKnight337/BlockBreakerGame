@@ -8,7 +8,7 @@ class Ball;
 class Block
 {
 private:
-    Vector2 position;
+    //Vector2 position;
     bool active;
     int width;
     int height;
@@ -16,6 +16,7 @@ private:
     Color color;
 
 public:
+    Vector2 position;
     Block();
     Block(Vector2 position, int width, int height, int value, bool active, Color color);
     ~Block();
