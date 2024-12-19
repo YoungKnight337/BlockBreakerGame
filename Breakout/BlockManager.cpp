@@ -16,11 +16,16 @@ void BlockManager::Initialize(Block& block,int a, int b)
 
     for (int i = 0; i < a; i++)
     {
+        std::vector<Block> block_row;
         for (int j = 0; j < b; j++)
         {
-            blocks[i][j].position.x =  static_cast<float>(j) * block.GetWidth() + block.GetWidth() / 2;
-            blocks[i][j].position.y = static_cast<float>(i) * block.GetHeight() + block.GetHeight() / 2 + initialDownPosition;
+            block.position.x = j * block.GetHeight() / 2;
+            block.position.y = i * block.GetWidth() / 2 + initialDownPosition;
+
+            block_row.push_back(block);
         }
+          
+        blocks.push_back(block_row);
     }
 }
 

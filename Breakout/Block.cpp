@@ -4,14 +4,14 @@
 //Default Constructor
 
 Block::Block()
- :position{position.x,position.y}, active {true}, width {80}, height {20}, value {1}, color {YELLOW}
+ :position{position.x,position.y}, active {true}, width {50}, height {20}, value {1}, color {YELLOW}
 {
 
 }
 
 
 //Parameter Constructor
-Block::Block(Vector2 position, int width = 80, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
+Block::Block(Vector2 position, int width = 50, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
     :position{position}, active {active}, width {width}, height {height}, value {value}, color {color}
 {
 
