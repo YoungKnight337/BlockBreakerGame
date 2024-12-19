@@ -1,22 +1,22 @@
 #pragma once
 #include "raylib.h"
+#include "Block.h"
+#include "vector"
 
 class Block;
 class Ball;
 
-static constexpr int BRICK_ROW = 8;
-static constexpr int BRICK_COL = 12;
 
 class BlockManager
 {
 	private:
-		int initialDownPosition;
+		std::vector<std::vector<Block>>blocks;
 	public:
 		BlockManager();
 		~BlockManager();
-		void Initialize();
-		void Update(Ball& ball);
-		void Draw();
-		Block blocks[BRICK_ROW][BRICK_COL];
+		void Initialize(Block& block, int a, int b);
+		void Update(Ball& ball, int a, int b);
+		void Draw(int a, int b);
+		
 };
 

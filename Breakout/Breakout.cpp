@@ -43,13 +43,13 @@ int main()
     Block blocks[BRICK_ROW][BRICK_COL];
     BlockManager blockManager;
 
-    blockManager.Initialize();
+    blockManager.Initialize(block,BRICK_ROW, BRICK_COL);
     
     while (WindowShouldClose() == false) 
     { 
         paddle.Update();
         ball.Update(paddle, block);
-        blockManager.Update(ball);
+        blockManager.Update(ball, BRICK_ROW, BRICK_COL);
         
         
         
@@ -59,7 +59,7 @@ int main()
         ball.Draw();
         paddle.Draw();
 
-        blockManager.Draw();
+        blockManager.Draw(BRICK_ROW, BRICK_COL);
         
         EndDrawing();
     }

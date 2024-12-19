@@ -24,5 +24,7 @@ public:
     // [xenobrain] Block needs a reference to Ball.  Const reference used so it can't be modified
     void Update(const Ball& ball);
    // void Deactivate(const Ball& ball);
+    int GetWidth() const { return width; };
+    int GetHeight() const { return height; };
     Rectangle GetRect();
 };

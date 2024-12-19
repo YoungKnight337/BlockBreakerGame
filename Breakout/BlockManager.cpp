@@ -2,7 +2,7 @@
 
 BlockManager::BlockManager()
 {
-
+    
 }
 
 BlockManager::~BlockManager()
@@ -10,33 +10,36 @@ BlockManager::~BlockManager()
 
 }
 
-void BlockManager::Initialize()
+void BlockManager::Initialize(Block& block,int a, int b)
 {
-    for (int i = 0; i < BRICK_ROW; i++)
+    int initialDownPosition = 50;
+
+    for (int i = 0; i < a; i++)
     {
-        for (int j = 0; j < BRICK_COL; j++)
+        for (int j = 0; j < b; j++)
         {
-            blocks[i][j].position = (Vector2){  j * width + wdith / 2,i * height + height / 2 };
+            blocks[i][j].position.x =  static_cast<float>(j) * block.GetWidth() + block.GetWidth() / 2;
+            blocks[i][j].position.y = static_cast<float>(i) * block.GetHeight() + block.GetHeight() / 2 + initialDownPosition;
         }
     }
 }
 
-void BlockManager::Draw()
+void BlockManager::Draw(int a, int b)
 {
-    for (int i = 0; i < BRICK_ROW; i++)
+    for (int i = 0; i < a; i++)
     {
-        for (int j = 0; j < BRICK_COL; j++)
+        for (int j = 0; j < b; j++)
         {
             blocks[i][j].Draw();
         }
     }
 }
 
-void BlockManager::Update(Ball& ball)
+void BlockManager::Update(Ball& ball, int a, int b)
 {
-    for (int i = 0; i < BRICK_ROW; i++)
+    for (int i = 0; i < a; i++)
     {
-        for (int j = 0; j < BRICK_COL; j++)
+        for (int j = 0; j < b; j++)
         {
             blocks[i][j].Update(ball);
         }
