@@ -17,6 +17,7 @@ void BlockManager::Initialize(Block& block,int a, int b)
     for (int i = 0; i < a; i++)
     {
         std::vector<Block> block_row;
+
         for (int j = 0; j < b; j++)
         {
             block.position.x = j * block.GetHeight() / 2;
@@ -26,27 +27,30 @@ void BlockManager::Initialize(Block& block,int a, int b)
         }
           
         blocks.push_back(block_row);
+
     }
 }
 
 void BlockManager::Draw(int a, int b)
 {
-    for (int i = 0; i < a; i++)
+    for (std::vector<Block> block_row : blocks)
     {
-        for (int j = 0; j < b; j++)
+        for (Block block : block_row)
         {
-            blocks[i][j].Draw();
+            block.Draw();
+
         }
     }
 }
 
 void BlockManager::Update(Ball& ball, int a, int b)
 {
-    for (int i = 0; i < a; i++)
+
+    for (std::vector<Block>&block_row: blocks)
     {
-        for (int j = 0; j < b; j++)
+        for (Block&block: block_row)
         {
-            blocks[i][j].Update(ball);
+            block.Update(ball);
         }
     }
 }
