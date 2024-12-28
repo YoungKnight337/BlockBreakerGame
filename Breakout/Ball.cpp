@@ -1,7 +1,5 @@
-#include "ball.h"
-#include "paddle.h"
-#include "block.h"
-//#include "block.h"
+#include"ball.h"
+
 
 
 //Default Constructor
@@ -27,7 +25,7 @@ void Ball::Draw()
     DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
-void Ball::Update(Paddle &player,  Block &block)
+void Ball::Update(Paddle &player,  Block &block, Ball &ball)
 {
 
     if (!isLaunched)
@@ -65,14 +63,15 @@ void Ball::Bounce(Paddle &paddle, Block &block)
         if (ball_speed_y > 0)
         {
             ball_speed_y *= -1;
-            ball_speed_x = -1; //(position.x - (paddle.GetRect()/2);
+            ball_speed_x = (position.x - paddle.GetRect()) / 2 * abs(ball_speed_x);
         }
+
     }
     
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {
         ball_speed_y *= -1;
-        //ball_speed_x = -1;
+        //ball_speed_x *= -1;
     }
     
 }

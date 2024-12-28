@@ -24,7 +24,7 @@ int main()
     Paddle paddle;
     Ball ball;
     Block block;
-    Block blocks[BRICK_ROW][BRICK_COL];
+    //Block blocks[BRICK_ROW][BRICK_COL];
     BlockManager blockManager;
 
     blockManager.Initialize(block,BRICK_ROW, BRICK_COL);
