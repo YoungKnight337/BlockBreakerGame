@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockManager.cpp" />
     <ClCompile Include="Breakout.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Paddle.cpp" />
@@ -96,6 +97,7 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="block.h" />
+    <ClInclude Include="BlockManager.h" />
     <ClInclude Include="paddle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

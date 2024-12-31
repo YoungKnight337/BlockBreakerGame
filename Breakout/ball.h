@@ -1,6 +1,12 @@
 #pragma once
-
+#include "ball.h"
+#include "paddle.h"
+#include "block.h"
+#include "math.h"
 #include "raylib.h"
+
+class Paddle;
+class Block;
 
 class Ball
 {
@@ -9,14 +15,17 @@ class Ball
         int ball_speed_x;
         int ball_speed_y;
         int radius;
+        bool isLaunched;
+        Color color;
     public:
         Ball();
-        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius);
+        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius, Color color);
         ~Ball();
-        void Bounce();
+        void Bounce(Paddle &paddle, Block &block);
         void Draw();
-        void Update();
-
+        void Update(Paddle& player, Block &block, Ball& ball);
+        void Launch();
+        void ResetBall();
         // [xenobrain] Const accessors prevent modifying values
         Vector2 GetPosition() const { return position; }
         int GetRadius() const { return radius; }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+class Ball;
 
 class Paddle
 {
@@ -13,10 +14,11 @@ private:
 public:
     // [xenobrain] Implement default constructor
     Paddle();
-    Paddle(Vector2 position, int width, int height, int score, int lives);
+    Paddle(Vector2 position, int width, int height, int score, int lives, Color color);
     ~Paddle();
     void Draw();
     void Update();
-    void Launch();
+    void LimitMovement();
+    Vector2 GetPosition() const { return position; }
     Rectangle GetRect();
 };

@@ -1,29 +1,47 @@
-#include "ball.h"
-//#include "block.h"
-//#include "paddle.h"
+#include"ball.h"
 
-Ball::Ball()
+
+
+//Default Constructor
+Ball::Ball() 
+    : position{position.x,position.y}, ball_speed_x{ 5 }, ball_speed_y{ 5 }, radius{ 7 }, color{ WHITE }
 {
+    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
+    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    isLaunched = false;
 }
 
-Ball::Ball(Vector2 position = {100.f, 100.f}, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 15)
-    : position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}
+//Paramter Constructor
+Ball::Ball(Vector2 position, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 7, Color color = WHITE)
+    :position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}, color {color}
 {
+    isLaunched = false;
 }
 
 Ball::~Ball() {}
 
 void Ball::Draw()
 {
-    DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), WHITE);
+    DrawCircle(static_cast<int>(position.x), static_cast<int>(position.y), static_cast<float>(radius), color);
 }
 
-void Ball::Update()
+void Ball::Update(Paddle &player,  Block &block, Ball &ball)
 {
-    Bounce();
-}
 
-void Ball::Bounce()
+    if (!isLaunched)
+    {
+        if ((IsKeyDown(KEY_SPACE)))
+        {
+            isLaunched = true;
+            Launch();
+        }
+    }
+    else
+    {
+        Bounce(player,block);
+    }
+}
+void Ball::Bounce(Paddle &paddle, Block &block)
 {
     position.x += ball_speed_x;
     position.y += ball_speed_y;
@@ -39,16 +57,37 @@ void Ball::Bounce()
     }
 
     // [xenobrain] Commented this section out for now because it's incomplete.  Needs to check collision with each block
-    /*
-    if (CheckCollisionCircleRec(position, radius, GetRect()))
+    
+    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()),paddle.GetRect()))
     {
-        ball_speed_x *= +1;
-    }
+        if (ball_speed_y > 0)
+        {
+            ball_speed_y *= -1; // (position.y - paddle.GetRect().y) / 2;* abs(ball_speed_y);
+            ball_speed_x *= (position.x - paddle.GetRect().x) / 2; //* abs(ball_speed_x);
+        }
 
-    if (CheckCollisionCircleRec(position, radius, GetRect()))
-    {
-        ball_speed_x *= +1;
     }
-    */
+    
+    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
+    {
+        ball_speed_y *= -1;
+        ball_speed_x *= (position.x - block.GetRect().x) * abs(ball_speed_x);
+    }
+    
+}
+
+void Ball::Launch()
+{
+    if (isLaunched = true)
+    {
+        ball_speed_x = 0;
+        ball_speed_y = -5;
+    }
 }
  
+void Ball::ResetBall()
+{
+    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
+    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    isLaunched = false;
+}

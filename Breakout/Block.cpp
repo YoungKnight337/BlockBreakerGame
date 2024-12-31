@@ -1,52 +1,48 @@
 #include "block.h"
-#include "Ball.h" 
+ 
+
+//Default Constructor
 
 Block::Block()
- : position {0.f, 0.f}, isHit {false}, width {50}, height {50}, value {1}, color {YELLOW}
+ :position{position.x,position.y}, active {true}, width {70}, height {20}, value {1}, color {YELLOW}
 {
+
 }
 
-Block::Block(Vector2 position, int width = 50, int height = 50, int value = 1, bool isHit = false, Color color = YELLOW)
-    : position {position}, isHit {isHit}, width {width}, height {height}, value {value}, color {color}
+
+//Parameter Constructor
+Block::Block(Vector2 position, int width = 50, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
+    :position{position}, active {active}, width {width}, height {height}, value {value}, color {color}
 {
+
 }
 
-Block::~Block()
-{
-    
-}
+Block::~Block(){}
 
 void Block::Draw()
 {
-    for (int i = 0; i < BRICK_ROW; i++)
+    if (active)
     {
-        for (int j = 0; j < BRICK_COL; j++)
-        {
-            DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
-        }
-
-        // [xenobrain] not sure what you're using this for yet but there was misleading indentation by having it under
-        // DrawRectagle.  Moved it here and added brackets to make it clear what's going on 
-        GetRect();
+        DrawRectangle(static_cast<int>(position.x), static_cast<int>(position.y), width, height, color);
     }
+
 }
 
-void Block::Update(const Ball &ball)
+void Block::Update(const Ball& ball)
 {
-    // Check Collision with Ball
-    if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
+    if (active)
     {
-        isHit = true;
-        EndDrawing();
+        if (CheckCollisionCircleRec(ball.GetPosition(), static_cast<float>(ball.GetRadius()), GetRect()))
+        {
+            active = false;
+        }
     }
 }
-
 Rectangle Block::GetRect()
 {
-    return{ position.x,position.y,float(width), float(height) };
-   // Rectangle rect;
-    //rect.x = position.x;
-    //rect.y = position.y;
-    //rect.width= height;
-    //rect.height = height;
+        return{position.x,position.y, static_cast<float>(width), static_cast<float>(height) };
 }
+
+
+
+
