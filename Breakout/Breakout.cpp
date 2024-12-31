@@ -32,7 +32,7 @@ int main()
     while (WindowShouldClose() == false) 
     { 
         paddle.Update();
-        ball.Update(paddle, block);
+        ball.Update(paddle, block, ball);
         blockManager.Update(ball, BRICK_ROW, BRICK_COL);
         
         
