@@ -1,7 +1,6 @@
 #include"ball.h"
 
 
-
 //Default Constructor
 Ball::Ball() 
     : position{position.x,position.y}, ball_speed_x{ 5 }, ball_speed_y{ 5 }, radius{ 7 }, color{ WHITE }
@@ -56,22 +55,21 @@ void Ball::Bounce(Paddle &paddle, Block &block)
         ball_speed_y *= -1;
     }
 
-    // [xenobrain] Commented this section out for now because it's incomplete.  Needs to check collision with each block
-    
+    //Ball not bouncing left based on position on paddle
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()),paddle.GetRect()))
     {
         if (ball_speed_y > 0)
         {
-            ball_speed_y *= -1; // (position.y - paddle.GetRect().y) / 2;* abs(ball_speed_y);
-            ball_speed_x *= (position.x - paddle.GetRect().x) / 2; //* abs(ball_speed_x);
+            ball_speed_y *= -1;  
+            ball_speed_x = (position.x - paddle.GetRect().x) / (paddle.GetRect().width) * 5;
         }
 
     }
-    
+    //Ball not bouncing off blocks 
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {
         ball_speed_y *= -1;
-        ball_speed_x *= (position.x - block.GetRect().x) * abs(ball_speed_x);
+        ball_speed_x *= -1; 
     }
     
 }
