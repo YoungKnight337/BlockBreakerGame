@@ -1,15 +1,12 @@
 #include "ball.h"
-#include "paddle.h"
-#include "block.h"
-//#include "block.h"
 
 
 //Default Constructor
 Ball::Ball() 
     : position{position.x,position.y}, ball_speed_x{ 5 }, ball_speed_y{ 5 }, radius{ 7 }, color{ WHITE }
 {
-    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
-    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.x = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.y = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
     isLaunched = false;
 }
 
@@ -62,17 +59,26 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()),paddle.GetRect()))
     {
-        if (ball_speed_y > 0)
+       if (ball_speed_y > 0)
         {
-            ball_speed_y *= -1;
-            ball_speed_x = -1; //(position.x - (paddle.GetRect()/2);
+            ball_speed_y *= -1 ;
+            ball_speed_x = (position.x - paddle.GetRect().x) / (paddle.GetRect().width / 2) * abs(ball_speed_y);
         }
     }
     
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {
         ball_speed_y *= -1;
-        //ball_speed_x = -1;
+        //ball_speed_x = -1.0f;
+
+        //Hit Above
+        // ball speed . y = -1
+        //Hit Below
+        // ball speed . y = -1
+        //Hit Left
+        // ball speed . x = -1
+        //HIt Right
+        // ball speed . x = -1
     }
     
 }

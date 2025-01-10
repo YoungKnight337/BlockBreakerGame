@@ -1,6 +1,9 @@
 #pragma once
-
 #include "raylib.h"
+#include "paddle.h"
+#include "block.h"
+#include "cmath"
+
 class Paddle;
 class Block;
 
@@ -15,7 +18,7 @@ class Ball
         Color color;
     public:
         Ball();
-        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius,Color color);
+        Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius, Color color);
         ~Ball();
         void Bounce(Paddle &paddle, Block &block);
         void Draw();

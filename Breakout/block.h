@@ -1,5 +1,4 @@
 #pragma once
-
 #include "raylib.h"
 
 // [xenobrain] Forward declare Ball

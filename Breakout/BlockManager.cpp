@@ -12,7 +12,7 @@ BlockManager::~BlockManager()
 
 void BlockManager::Initialize(Block& block,int a, int b)
 {
-    initialDownPosition = 50;
+    int initialDownPosition = 50;
 
     for (int i = 0; i < a; i++)
     {

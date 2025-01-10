@@ -7,8 +7,8 @@
 Paddle::Paddle() : position{ position.x,position.y },width { 75 }, height{ 20 }, score{ 0 }, lives{ 3 }, color{ GRAY }
 {
     // Cast to float to avoid integer division
-    position.x = static_cast<float>(GetScreenHeight())* 7/8.f;
-    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.x = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.y = static_cast<float>(GetScreenHeight()) * 7 / 8.f;
 }
 
 // [xenobrain] added setters and default values where possible
