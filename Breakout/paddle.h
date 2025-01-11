@@ -11,6 +11,7 @@ private:
     int score;
     int lives;
     Color color;
+
 public:
     // [xenobrain] Implement default constructor
     Paddle();
