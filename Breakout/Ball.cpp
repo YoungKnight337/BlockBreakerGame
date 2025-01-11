@@ -109,7 +109,7 @@ void Ball::Launch()
  
 void Ball::ResetBall()
 {
-    position.x = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
-    position.y = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.x = static_cast<float>(GetScreenWidth()) / 2.f;
+    position.y = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
     isLaunched = false;
 }
