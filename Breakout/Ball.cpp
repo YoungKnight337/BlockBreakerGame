@@ -3,7 +3,7 @@
 
 //Default Constructor
 Ball::Ball() 
-    : position{position.x,position.y}, ball_speed_x{ 5 }, ball_speed_y{ 5 }, radius{ 7 }, color{ WHITE }
+    : position{position.x,position.y}, ball_speed_x{ 0 }, ball_speed_y{ 0 }, radius{ 7 }, color{ WHITE }
 {
     position.x = static_cast<float>(GetScreenWidth()) / 2.f;
     position.y = static_cast<float>(GetScreenHeight()) * 7 / 8 - 30.f;
@@ -11,7 +11,7 @@ Ball::Ball()
 }
 
 //Paramter Constructor
-Ball::Ball(Vector2 position, int ball_speed_x = 5, int ball_speed_y = 5, int radius = 7, Color color = WHITE)
+Ball::Ball(Vector2 position, int ball_speed_x = 0, int ball_speed_y = 0, int radius = 7, Color color = WHITE)
     :position {position}, ball_speed_x {ball_speed_x}, ball_speed_y {ball_speed_y}, radius {radius}, color {color}
 {
     isLaunched = false;
@@ -45,6 +45,14 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     position.x += ball_speed_x;
     position.y += ball_speed_y;
 
+    int left = block.GetRect().x;
+    int right = block.GetRect().x + block.GetRect().width;
+    int top = block.GetRect().y;
+    int bottom = block.GetRect().y + block.GetRect().height;
+
+    int px = position.x - ball_speed_x;
+    int py = position.y - ball_speed_y;
+
     if (position.x + radius >= GetScreenWidth() || position.x - radius <= 0)
     {
         ball_speed_x *= -1;
@@ -67,18 +75,25 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     }
     
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
-    {
-        ball_speed_y *= -1;
-        //ball_speed_x = -1.0f;
-
-        //Hit Above
-        // ball speed . y = -1
-        //Hit Below
-        // ball speed . y = -1
-        //Hit Left
-        // ball speed . x = -1
-        //HIt Right
-        // ball speed . x = -1
+    {   
+        if(block.IsActive)
+        
+        if(py < top)
+        {
+            ball_speed_y *= -1;
+        }
+        if (py > bottom)
+        {
+            ball_speed_y *= -1;
+        }
+        if (px < left)
+        {
+            ball_speed_x *= -1;
+        }
+        if (px > right)
+        {
+            ball_speed_x *= -1;
+        }
     }
     
 }

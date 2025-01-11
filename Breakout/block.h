@@ -24,6 +24,6 @@ public:
     void Update(const Ball& ball);
    // void Deactivate(const Ball& ball);
     int GetWidth() const { return width; };
-    int GetHeight() const { return height; };
+    int GetHeight() const { return height; }
     Rectangle GetRect();
 };
