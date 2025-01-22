@@ -76,24 +76,18 @@ void Ball::Bounce(Paddle &paddle, Block &block)
     
     if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
     {   
-        if(block.IsActive)
+        if (block.GetActiveState() == true)
+        {
+            if (py < top || py > bottom)
+            {
+                ball_speed_y *= -1;
+            }
+            if (px < left || px > right)
+            {
+                ball_speed_x *= -1;
+            }
+        }
         
-        if(py < top)
-        {
-            ball_speed_y *= -1;
-        }
-        if (py > bottom)
-        {
-            ball_speed_y *= -1;
-        }
-        if (px < left)
-        {
-            ball_speed_x *= -1;
-        }
-        if (px > right)
-        {
-            ball_speed_x *= -1;
-        }
     }
     
 }
