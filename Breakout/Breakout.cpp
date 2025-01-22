@@ -42,7 +42,6 @@ int main()
 
         ball.Draw();
         paddle.Draw();
-
         blockManager.Draw(BRICK_ROW, BRICK_COL);
         
         EndDrawing();

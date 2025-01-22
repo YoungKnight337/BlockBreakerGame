@@ -73,10 +73,10 @@ void Ball::Bounce(Paddle &paddle, Block &block)
             ball_speed_x = (position.x - paddle.GetRect().x) / (paddle.GetRect().width / 2) * abs(ball_speed_y);
         }
     }
-    
-    if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
-    {   
-        if (block.GetActiveState() == true)
+
+    if (block.GetActiveState() == true)
+    {
+        if (CheckCollisionCircleRec(position, static_cast<float>(GetRadius()), block.GetRect()))
         {
             if (py < top || py > bottom)
             {
@@ -86,9 +86,11 @@ void Ball::Bounce(Paddle &paddle, Block &block)
             {
                 ball_speed_x *= -1;
             }
+
         }
-        
     }
+    
+    
     
 }
 
