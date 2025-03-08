@@ -1,6 +1,8 @@
 #pragma once
-
 #include "raylib.h"
+
+
+//Forward declare Ball
 class Ball;
 
 class Paddle

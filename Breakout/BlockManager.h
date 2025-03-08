@@ -3,6 +3,8 @@
 #include "Block.h"
 #include "vector"
 
+
+//Forward declare Block and Ball
 class Block;
 class Ball;
 

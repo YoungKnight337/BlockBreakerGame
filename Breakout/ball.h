@@ -1,10 +1,10 @@
 #pragma once
-#include "ball.h"
 #include "paddle.h"
 #include "block.h"
 #include "math.h"
 #include "raylib.h"
 
+// Forward delcare Paddle and Block
 class Paddle;
 class Block;
 
