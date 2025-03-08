@@ -24,7 +24,7 @@ int main()
     Paddle paddle;
     Ball ball;
     Block block;
-    //Block blocks[BRICK_ROW][BRICK_COL];
+    Block blocks[BRICK_ROW][BRICK_COL];
     BlockManager blockManager;
 
     blockManager.Initialize(block,BRICK_ROW, BRICK_COL);
@@ -32,7 +32,7 @@ int main()
     while (WindowShouldClose() == false) 
     { 
         paddle.Update();
-        ball.Update(paddle, block, ball);
+        ball.Update(paddle, block);
         blockManager.Update(ball, BRICK_ROW, BRICK_COL);
         
         

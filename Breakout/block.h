@@ -26,5 +26,6 @@ public:
    // void Deactivate(const Ball& ball);
     int GetWidth() const { return width; };
     int GetHeight() const { return height; };
+    bool GetActiveState() const { return active; }
     Rectangle GetRect();
 };

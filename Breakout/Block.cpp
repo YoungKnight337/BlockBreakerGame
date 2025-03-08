@@ -11,7 +11,7 @@ Block::Block()
 
 
 //Parameter Constructor
-Block::Block(Vector2 position, int width = 50, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
+Block::Block(Vector2 position, int width = 70, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
     :position{position}, active {active}, width {width}, height {height}, value {value}, color {color}
 {
 
