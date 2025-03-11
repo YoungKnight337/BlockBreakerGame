@@ -21,14 +21,14 @@ class Ball
         Ball();
         Ball(Vector2 position, int ball_speed_x, int ball_speed_y, int radius, Color color);
         ~Ball();
+        // [xenobrain] Const accessors prevent modifying values
+        Vector2 GetPosition() const { return position; }
+        int GetRadius() const { return radius; }
         void Bounce(Paddle &paddle, Block &block);
         void Draw();
         void Update(Paddle& player, Block &block);
         void Launch();
         void ResetBall();
-        // [xenobrain] Const accessors prevent modifying values
-        Vector2 GetPosition() const { return position; }
-        int GetRadius() const { return radius; }
         //Circle GetCirlce()
 
 
