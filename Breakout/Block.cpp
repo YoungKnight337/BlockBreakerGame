@@ -1,7 +1,4 @@
 #include "block.h"
- 
-
-//Default Constructor
 
 Block::Block()
  :position{position.x,position.y}, active {true}, width {70}, height {20}, value {1}, color {YELLOW}
@@ -10,7 +7,6 @@ Block::Block()
 }
 
 
-//Parameter Constructor
 Block::Block(Vector2 position, int width = 70, int height = 20, int value = 1, bool active = true, Color color = YELLOW)
     :position{position}, active {active}, width {width}, height {height}, value {value}, color {color}
 {

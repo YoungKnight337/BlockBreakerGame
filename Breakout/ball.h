@@ -4,7 +4,6 @@
 #include "math.h"
 #include "raylib.h"
 
-// Forward delcare Paddle and Block
 class Paddle;
 class Block;
 
