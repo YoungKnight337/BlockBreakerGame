@@ -1,7 +1,6 @@
 #include"ball.h"
 
 
-
 //Default Constructor
 Ball::Ball()
     : position{ position.x,position.y }, ball_speed_x{ 0 }, ball_speed_y{ 0 }, radius{ 7 }, color{ WHITE }
